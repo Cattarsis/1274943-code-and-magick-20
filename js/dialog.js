@@ -54,7 +54,7 @@ window.dialog = (function () {
     if (dragged) {
       var onClickPreventDefault = function (clickEvt) {
         clickEvt.preventDefault();
-        dialogHandle.removeEventListener('click', onClickPreventDefault)
+        dialogHandle.removeEventListener('click', onClickPreventDefault);
       };
       dialogHandle.addEventListener('click', onClickPreventDefault);
     }
