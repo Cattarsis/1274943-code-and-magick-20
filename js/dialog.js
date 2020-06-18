@@ -19,6 +19,8 @@ window.dialog = (function () {
 
   var closePopup = function () {
     currentObj.classList.add('hidden');
+    currentObj.style.top = '';
+    currentObj.style.left = '';
 
     document.removeEventListener('keydown', onPopupEscPress);
   };
