@@ -42,8 +42,8 @@ window.wizardGenerator = (function () {
     var element = templateWizard.cloneNode(true);
 
     element.querySelector('.setup-similar-label').textContent = wizard.name;
-    element.querySelector('.wizard-coat').style.fill = wizard.coatColor;
-    element.querySelector('.wizard-eyes').style.fill = wizard.eyesColor;
+    element.querySelector('.wizard-coat').style.fill = wizard.colorCoat;
+    element.querySelector('.wizard-eyes').style.fill = wizard.colorEyes;
 
     return element;
   };

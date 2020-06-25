@@ -37,7 +37,11 @@ window.dialog = (function () {
     currentObj.style.top = '';
     currentObj.style.left = '';
 
-    currentObj.querySelector('canvas').remove();
+    var canvas = currentObj.querySelector('canvas');
+
+    if (canvas) {
+      canvas.remove();
+    }
 
     document.removeEventListener('keydown', onPopupEscPress);
   };
