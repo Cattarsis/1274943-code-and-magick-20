@@ -14,20 +14,6 @@ window.renderStatistics = (function () {
   var CAPTIONOFFSET_X = 20;
   var CAPTIONOFFSET_Y = 10;
 
-  var renderCloud = function (ctx, x, y, color) {
-    ctx.fillStyle = color;
-    ctx.fillRect(x, y, CLOUD_WIDTH, CLOUD_HEIGHT);
-  };
-
-  var printMultiLine = function (ctx, x, y, str) {
-    ctx.fillStyle = '#000';
-    ctx.font = '16px PT Mono';
-    var strs = str.split('\n');
-    for (var i = 0; i < strs.length; i++) {
-      ctx.fillText(strs[i], x, y + FONT_GAP * i);
-    }
-    return strs.length;
-  };
 
   var drawGist = function (ctx, currenValue, maxValue, x, y, number, title, color) {
     ctx.fillStyle = '#000';
@@ -41,12 +27,12 @@ window.renderStatistics = (function () {
   };
 
   return function (ctx, players, times) {
-    renderCloud(ctx, CLOUD_X + GAP, CLOUD_Y + GAP, 'rgba(0, 0, 0, 0.7)');
-    renderCloud(ctx, CLOUD_X, CLOUD_Y, '#fff');
+    window.util.renderCloud(ctx, CLOUD_X + GAP, CLOUD_Y + GAP, CLOUD_WIDTH, CLOUD_HEIGHT, 'rgba(0, 0, 0, 0.7)');
+    window.util.renderCloud(ctx, CLOUD_X, CLOUD_Y, CLOUD_WIDTH, CLOUD_HEIGHT, '#fff');
 
     var maxTime = window.util.getMaxElement(times);
 
-    var printedLines = printMultiLine(ctx, CLOUD_X + CAPTIONOFFSET_X, CLOUD_Y + CAPTIONOFFSET_Y + FONT_GAP, 'Ура вы победили!\nСписок результатов:');
+    var printedLines = window.util.printMultiLine(ctx, CLOUD_X + CAPTIONOFFSET_X, CLOUD_Y + CAPTIONOFFSET_Y + FONT_GAP, FONT_GAP, 'Ура вы победили!\nСписок результатов:');
 
     for (var i = 0; i < players.length; i++) {
       var saturation = Math.floor(Math.random() * 101);

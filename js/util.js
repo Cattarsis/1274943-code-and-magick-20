@@ -4,6 +4,34 @@ window.util = (function () {
   var ESC_KEYCODE = 27;
   var ENTER_KEYCODE = 13;
 
+  var renderCloud = function (ctx, x, y, cloudWidth, cloudHeight, color) {
+    ctx.fillStyle = color;
+    ctx.fillRect(x, y, cloudWidth, cloudHeight);
+  };
+
+  var printMultiLine = function (ctx, x, y, fontGap, str) {
+    ctx.fillStyle = '#000';
+    ctx.font = '16px PT Mono';
+    var strs = str.split('\n');
+    for (var i = 0; i < strs.length; i++) {
+      ctx.fillText(strs[i], x, y + fontGap * i);
+    }
+    return strs.length;
+  };
+
+  var randomInt = function (num) {
+    return Math.floor(Math.random() * num);
+  };
+
+  var shuffle = function (array) {
+    for (var i = array.length - 1; i > 0; i--) {
+      var j = randomInt(i + 1);
+      var tmp = array[i];
+      array[i] = array[j];
+      array[j] = tmp;
+    }
+  };
+
   return {
     isEscEvent: function (evt, action) {
       if (evt.keyCode === ESC_KEYCODE) {
@@ -24,6 +52,9 @@ window.util = (function () {
         }
       }
       return maxElement;
-    }
+    },
+    renderCloud: renderCloud,
+    printMultiLine: printMultiLine,
+    shuffle: shuffle
   };
 })();
