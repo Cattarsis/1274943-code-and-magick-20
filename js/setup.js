@@ -4,10 +4,13 @@
   var setup = document.querySelector('.setup');
   var setupClose = setup.querySelector('.setup-close');
   var setupDrag = setup.querySelector('.upload');
+  var setupAvatarInpu = setup.querySelector('.upload input[type=file]');
+  var preview = document.querySelector('.setup-user-pic');
 
   window.dialog.openBtnEventAdd(setupOpen, setup);
   window.dialog.closeBtnEventAdd(setupClose, setup);
   window.dialog.moveElementEventAdd(setupDrag, setup);
+  window.util.addLoadImageHandler(setupAvatarInpu, preview);
 
   var userNameInput = document.querySelector('.setup-user-name');
 

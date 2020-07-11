@@ -4,6 +4,7 @@ window.util = (function () {
   var ESC_KEYCODE = 27;
   var ENTER_KEYCODE = 13;
   var DEBOUNCE_INTERVAL = 500;
+  var FILE_TYPES = ['gif', 'jpg', 'jpeg', 'png'];
 
   var renderCloud = function (ctx, x, y, cloudWidth, cloudHeight, color) {
     ctx.fillStyle = color;
@@ -31,6 +32,27 @@ window.util = (function () {
       array[i] = array[j];
       array[j] = tmp;
     }
+  };
+
+  var addLoadImageHandler = function (fileChooser, pic) {
+    fileChooser.addEventListener('change', function () {
+      var file = fileChooser.files[0];
+      var fileName = file.name.toLowerCase();
+
+      var matches = FILE_TYPES.some(function (it) {
+        return fileName.endsWith(it);
+      });
+
+      if (matches) {
+        var reader = new FileReader();
+
+        reader.addEventListener('load', function () {
+          pic.src = reader.result;
+        });
+
+        reader.readAsDataURL(file);
+      }
+    });
   };
 
   return {
@@ -69,6 +91,7 @@ window.util = (function () {
           cb.apply(null, parameters);
         }, DEBOUNCE_INTERVAL);
       };
-    }
+    },
+    addLoadImageHandler: addLoadImageHandler
   };
 })();
